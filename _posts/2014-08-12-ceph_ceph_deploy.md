@@ -2,7 +2,7 @@
 layout: post
 title:  "Installing ceph with ceph-deploy"
 date:   2014-08-12 17:49:12
-categories: Python
+categories: linux ceph ceph-deploy
 ---
 
 <pre>
