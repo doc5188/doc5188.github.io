@@ -2,7 +2,8 @@
 layout: post
 title: 编程工具系列之一------使用GDB的堆栈跟踪功能
 date:   2014-08-12 15:49:11
-categories: Linux gdb
+categories: gdb
+tags: [Linux, gdb]
 ---
 
       在调试程序的过程中，查看程序的函数调用堆栈是一项最基本的任务，几乎所有的图形调试器都支持这项特性。

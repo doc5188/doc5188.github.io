@@ -2,7 +2,8 @@
 layout: post
 title: 编程工具系列之二------使用GDB的源代码查看功能
 date:   2014-08-12 15:50:11
-categories: Linux gdb
+categories: gdb
+tags: [Linux, gdb]
 ---
 
 <pre>

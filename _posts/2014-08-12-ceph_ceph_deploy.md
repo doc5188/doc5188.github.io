@@ -2,7 +2,8 @@
 layout: post
 title:  "Installing ceph with ceph-deploy"
 date:   2014-08-12 17:49:12
-categories: linux ceph ceph-deploy
+categories: ceph
+tags: [linux, ceph, ceph-deploy]
 ---
 
 <pre>

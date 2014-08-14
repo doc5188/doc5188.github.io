@@ -2,7 +2,8 @@
 layout: post
 title: "在ubuntu 12.04中使用openvswitch+kvm构建虚拟环境"
 date: 2014-08-12 17:43:43
-categories: kvm openvswitch linux
+categories: 虚拟化
+tags: [kvm, openvswitch, linux, ubuntu]
 ---
 <pre>
 最近使用基于netfpga的openflow交换机做了一个实验，实验不大却也用了六台计算机，配置起来十分麻烦，做实验的时候实验室买了两台性能比较强悍的工作站，索性就把实验转移到虚拟环境中，一来可以减少给各个机器做配置的时间，把一个机器做好，其它的只需要clone即可，二来还可以学习一些虚拟化的东西，对自己也是一种提高，废话到此结束，下面进入正题。

@@ -1,7 +1,8 @@
 ---
 layout: post
 date: 2014-08-13 17:58:00
-categories: ubuntu linux
+categories: linux
+tags: [ubuntu, linux, gnome-terminal]
 title: "ubuntu 10.04 TLS 根据当前目录修改终端窗口的title"
 ---
 

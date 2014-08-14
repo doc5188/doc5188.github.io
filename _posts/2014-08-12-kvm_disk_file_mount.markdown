@@ -2,7 +2,8 @@
 layout: post
 title:  "kvm虚拟机磁盘文件读取小结"
 date:   2014-08-12 11:38:11
-categories: 虚拟化 Linux
+categories: 虚拟化
+tags: [虚拟化, Linux]
 ---
 
 

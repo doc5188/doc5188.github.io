@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "虚拟化实战：Cluster设计之一资源池"
-categories: virtual cluster
+categories: 虚拟化 
+tags: [virtual, cluster, 虚拟化]
 date: 2014-08-13 10:18:20
 ---
 

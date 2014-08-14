@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "打造ubuntu底下的SecureCRT（引用）"
-categories: linux ubuntu
+categories: linux
+tags: [linux, ubuntu]
 date: 2014-08-13 17:49:00
 ---
 
