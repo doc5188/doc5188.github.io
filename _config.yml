@@ -83,7 +83,7 @@ JB:
   # Set 'provider' to the comment provider you want to use.
   # Set 'provider' to false to turn commenting off globally.
   #
-  baseurl=/  # add By Gavin
+  baseurl: /  # add By Gavin
   
   comments:
     provider: disqus
