@@ -1,0 +1,18 @@
+---
+layout: post
+title: "每日算法题--01--不使用中间变量交换二个数的值"
+categories: 算法
+tags: [algorithm, 每日算法题, 算法]
+date: 2014-08-18 12:04:32
+---
+
+<pre>
+int swap(int &num1, int &num2)
+{
+	num1 = num1 ^ num2;
+	num2 = num1 ^ num2;
+	num1 = num1 ^ num2;
+
+	return 0;
+}
+</pre>
