@@ -2,7 +2,7 @@
 layout: post
 title: "对象存储Object Storage的理解"
 categories: 分布式存储
-tags:[ceph, dfs,存储]
+tags: [ceph, dfs,存储]
 date: 2014-09-02 09:44:32
 ---
 
