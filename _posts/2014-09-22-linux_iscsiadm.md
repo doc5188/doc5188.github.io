@@ -1,6 +1,6 @@
 ---
 layout: post
-title "iscsiadm主要操作命令"
+title: "iscsiadm主要操作命令"
 categories: linux
 tags: [iscsiadm, linux, iscsi]
 date: 2014-09-22 15:54:32
@@ -39,8 +39,10 @@ Units = cylinders of 16065 * 512 = 8225280 bytes
    Device Boot      Start         End      Blocks   Id  System
 /dev/sdd1               1         100      803218+  83  Linux
 /dev/sdd2             101        1000     7229250   83  Linux
+{% endhighlight %}
 
 查看iscsi运行情况
+{% highlight bash %}
 [root@xifenfei ~]# rpm -aq|grep iscsi
 iscsi-initiator-utils-6.2.0.872-10.0.1.el5
 [root@xifenfei ~]#  chkconfig --list |grep iscsi
@@ -52,8 +54,10 @@ root     15793     1  0 09:08 ?        00:00:00 brcm_iscsiuio
 root     15800     1  0 09:08 ?        00:00:00 iscsid
 root     15802     1  0 09:08 ?        00:00:00 iscsid
 root     19533 15269  0 10:11 pts/1    00:00:00 grep iscs
+{% endhighlight %}
 
 配置iscsi存储
+{% highlight bash %}
 [root@xifenfei ~]# iscsiadm -m discovery -t sendtargets -p 192.168.1.254:3260
 192.168.1.254:3260,1 iqn.2006-01.com.openfiler:tsn.32b32087937b
 [root@xifenfei ~]# iscsiadm -m node –T iqn.2006-01.com.openfiler:tsn.32b32087937b -p 192.168.1.254:3260 -l
@@ -61,8 +65,10 @@ Logging in to [iface: default, target: iqn.2006-01.com.openfiler:tsn.32b32087937
 Login to [iface: default, target: iqn.2006-01.com.openfiler:tsn.32b32087937b, portal: 192.168.1.254,3260] successful.
 [root@xifenfei ~]# iscsiadm -m node –T iqn.2006-01.com.openfiler:tsn.32b32087937b -p 192.168.1.254:3260
 >--op update -n node.startup -v automatic
+{% endhighlight %}
 
 当前包含磁盘
+{% highlight bash %}
 [root@xifenfei ~]# fdisk -l
  
 Disk /dev/sda: 21.4 GB, 21474836480 bytes
@@ -111,14 +117,18 @@ Disk /dev/sdg: 1073 MB, 1073741824 bytes
 Units = cylinders of 2074 * 512 = 1061888 bytes
  
 Disk /dev/sdg doesn't contain a valid partition table
+{% endhighlight %}
 
 卸载iscsi存储
+{% highlight bash %}
 [root@xifenfei ~]# iscsiadm -m node --logoutall=all
 Logging out of session [sid: 3, target: iqn.2006-01.com.openfiler:tsn.32b32087937b, portal: 192.168.1.254,3260]
 Logout of [sid: 3, target: iqn.2006-01.com.openfiler:tsn.32b32087937b, portal: 192.168.1.254,3260] successful.
 [root@xifenfei ~]# iscsiadm -m node --op delete --targetname iqn.2006-01.com.openfiler:tsn.32b32087937b
+{% endhighlight %}
 
 当前包含磁盘
+{% highlight bash %}
 [root@xifenfei ~]# fdisk -l
  
 Disk /dev/sda: 21.4 GB, 21474836480 bytes
@@ -149,27 +159,41 @@ Units = cylinders of 16065 * 512 = 8225280 bytes
    Device Boot      Start         End      Blocks   Id  System
 /dev/sdd1               1         100      803218+  83  Linux
 /dev/sdd2             101        1000     7229250   83  Linux
+{% endhighlight %}
 
 iscsi操作总结
+
 增加iscsi存储
+<pre>
 (1)发现iscsi存储:iscsiadm -m discovery -t st -p ISCSI_IP
 (2)查看iscsi发现记录:iscsiadm -m node
 (3)登录iscsi存储:iscsiadm -m node -T LUN_NAME -p ISCSI_IP -l
 (4)开机自动: iscsiadm -m node –T LUN_NAME -p ISCSI_IP --op update -n node.startup -v automatic
+</pre>
  
 删除iscsi存储
+<pre>
 (1)登出iscsi存储 iscsiadm -m node -T LUN_NAME -p ISCSI_IP -u
 (2)对出iscsi所有登录 iscsiadm -m node --logoutall=all
 (3)删除iscsi发现记录:iscsiadm -m node -o delete -T LUN_NAME -p ISCSI_IP
+</pre>
  
 登入需验证码的节点
 (1)开启认证
-iscsiadm -m node -T LUN_NAME -o update --name node.session.auth.authmethod --value=CHAP
+{% highlight bash %}
+# iscsiadm -m node -T LUN_NAME -o update --name node.session.auth.authmethod --value=CHAP
+{% endhighlight %}
 *.使用-o同--op
+
 (2)添加用户
-iscsiadm -m node -T LUN_NAME --op update --name node.session.auth.username --value=[用户名]
+
+{% highlight bash %}
+# iscsiadm -m node -T LUN_NAME --op update --name node.session.auth.username --value=[用户名]
+{% endhighlight %}
 (3)添加密码
-iscsiadm –m node –T LUN_NAME –op update –name node.session.auth.password –value=[密码]
+{% highlight bash %}
+# iscsiadm –m node –T LUN_NAME –op update –name node.session.auth.password –value=[密码]
+{% endhighlight %}
 
 <pre>
 链接：http://www.xifenfei.com/3420.html
