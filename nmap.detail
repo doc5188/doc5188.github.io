@@ -1,0 +1,97 @@
+http://funoverip.net/2010/11/socks-proxy-servers-scanning-with-nmap/
+Socks proxy servers scanning with nmap
+by foip on November 26th, 2010
+Step 1: Download the latest Nmap version
+
+Nmap version 5 and upper provides a “scripts” feature, allowing the scanner to perform some action once a port is detected as “open”. Example: the script called “smb-enum-users” will try to get back the username list of a Windows system, if port 445/TCP is detected as open.
+
+One of the interesting script is called “socks-open-proxy“. This script is intended to check if an open proxy is running on a host by performing a real test (if port 1080/TCP is detected as open).
+
+Syntax example:
+
+nmap -v -sS -p 1080 --script socks-open-proxy 192.168.0.1/24
+
+
+Step 2: Choose an IP range on Internet
+
+Don’t try to randomly scan Internet IP addresses, you will lose your time. A good way to collect your own proxy server list is to scan against (infected) ADSL/Cable users by choosing some ISP ranges from other countries.
+
+The first step is to collect some ADSL/Cable ranges. Visit http://www.ipaddresslocation.org/ip_ranges/get_ranges.php , select a country, set output as “CIDR”, and then download the list. Copy/Paste the list in a text file called “ranges.txt“.
+
+
+Step 3: Create a dedicated nmap script for socks proxy scanning
+
+Copy/Paste the following bash script into a file. For example : “scan.sh“, adapt the script if needed.
+	
+#!/bin/sh
+ 
+# store
+socks_found="socks.ok"
+ 
+# ports to scan
+ports="1080"
+ 
+nmap    -sS                             \
+        --min-parallelism  700 \
+        -n                              \
+        -PN                             \
+        -p $ports                       \
+        --max-retries 1                 \
+        --script socks-open-proxy       \
+        -T 4                            \
+        -iL ranges.txt                  \
+        2>/dev/null \
+        | grep -B 4 -A 2 "socks-open-proxy:"  \
+        | tee -a $socks_found
+
+You noticed the use of parameters “–script socks-open-proxy”  as well as “-iL ranges.txt“. See the manpage for further details.
+
+Don’t forget to set the ‘execute’ permission to your script (chmod 700 scan.sh)
+
+
+Step 4: Scan !
+
+Run “./scan.sh” as root and wait ….
+
+When socks server will be discovered, they will appear this way. Notice that the result is also written to the file called socks.ok.
+
+Interesting ports on x.184.29.131:
+PORT     STATE SERVICE
+1080/tcp open  socks
+|  socks-open-proxy: Potentially OPEN proxy.
+|_ Versions succesfully tested: Socks4 Socks5
+
+--
+
+Interesting ports on x.184.272.132:
+PORT     STATE SERVICE
+1080/tcp open  socks
+|  socks-open-proxy: Potentially OPEN proxy.
+|_ Versions succesfully tested: Socks4 
+
+--
+
+Interesting ports on x.190.44.45:
+PORT     STATE SERVICE
+1080/tcp open  socks
+|  socks-open-proxy: Potentially OPEN proxy.
+|_ Versions succesfully tested: Socks4 Socks5
+
+--
+
+Yeah ! your first socks servers ! ;-)
+
+
+Step 5: Refine your ranges
+
+(If nmap didn’t find any open socks server, try some other subnet from others countries, and go back to previous step)
+
+Based on the socks server list you’ve found during the previous step, go to the RIPE database on http://www.db.ripe.net/whois, query each IP address in the search field and collect the ISP subnet associated to that IP. Save this ISP subnet in a new file.
+
+Example: Ip address x.184.29.131 belong to subnet IP x.184.0.0/17
+
+
+Step 6: That’s all
+
+It’s time for you to manage your own list of socks servers. Enjoy ;)
+
