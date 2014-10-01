@@ -161,7 +161,7 @@ func SetTitle()
 		call append(line(".")+1, "title: ")
 		call append(line(".")+2, "categories: ")
 		call append(line(".")+3, "tags: []")
-		call append(line(".")+4, "date: ".strftime("%y-%m-%d %H:%M:%S"))
+		call append(line(".")+4, "date: ".strftime("%Y-%m-%d %H:%M:%S"))
 		call append(line(".")+5, "---")
 	elseif &filetype == 'modula2'
 		call setline(1, "---")
@@ -169,7 +169,7 @@ func SetTitle()
 		call append(line(".")+1, "title: ")
 		call append(line(".")+2, "categories: ")
 		call append(line(".")+3, "tags: []")
-		call append(line(".")+4, "date: ".strftime("%y-%m-%d %H:%M:%S"))
+		call append(line(".")+4, "date: ".strftime("%Y-%m-%d %H:%M:%S"))
 		call append(line(".")+5, "---")
 
 	else
