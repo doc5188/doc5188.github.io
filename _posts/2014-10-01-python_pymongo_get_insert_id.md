@@ -6,12 +6,11 @@ tags: [python, pymongo]
 date: 2014-10-02 01:48:51
 ---
 
-{% highlight python %}
+<pre>
 def add_post():
     post = db.Post()
     post.title = request.form['title']
     post.text = request.form['text']
     post.save()
     return post._id
-
-{% endhight %}
+</pre>
