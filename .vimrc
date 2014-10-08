@@ -7,6 +7,10 @@ let c_space_errors=1
 set fencs=utf-8,gbk
 
 :source $VIMRUNTIME/ftplugin/man.vim
+"nmap m :Man=expand("")<CR>
+"nmap K :Man
+nmap K :Man <cword><CR>
+
 
 function! UPDATE_TAGS()
   let _f_ = expand("%:p")
