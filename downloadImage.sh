@@ -28,6 +28,7 @@ if [ -z $file_path ];then
 fi
 
 output_txt=""
+rm /tmp/.dorun.sh
 
 for fn in `grep -oE "<img[^>]*?src=['\"]([^\"]*?)['\"]" $file_path |awk -F"src=" '{print $2}' | sed "s/'//g" | sed 's/"//g'`
 do
@@ -44,10 +45,13 @@ do
 	echo $fn |grep -E "^http://" || continue
 
 	if [ ! -f `basename $fn` ];then
-		wget $fn
+		echo "downloading ...."
+		#wget $fn
 	fi
-	output_txt=$output_txt'\n<img src="/upload/images/'$(basename $fn)'" />'
+	echo "sed -i 's|$fn|/upload/images/$(basename $fn)|g' $file_path" >> /tmp/.dorun.sh
+	#output_txt=$output_txt'\n<img src="/upload/images/'$(basename $fn)'" />'
 
 done
+sh /tmp/.dorun.sh
 
 echo $output_txt
