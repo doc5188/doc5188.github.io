@@ -46,7 +46,7 @@ do
 
 	if [ ! -f `basename $fn` ];then
 		echo "downloading ...."
-		#wget $fn
+		wget $fn
 	fi
 	echo "sed -i 's|$fn|/upload/images/$(basename $fn)|g' $file_path" >> /tmp/.dorun.sh
 	#output_txt=$output_txt'\n<img src="/upload/images/'$(basename $fn)'" />'
