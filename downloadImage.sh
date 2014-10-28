@@ -32,6 +32,7 @@ rm /tmp/.dorun.sh
 
 for fn in `grep -oE "<img[^>]*?src=['\"]([^\"]*?)['\"]" $file_path |awk -F"src=" '{print $2}' | sed "s/'//g" | sed 's/"//g'`
 do
+	old_fn=$fn
 	echo $fn |grep -E "^http://"
 	ret=$?
 	if [ "$ret" != "0" ];then
@@ -48,7 +49,7 @@ do
 		echo "downloading ...."
 		wget $fn
 	fi
-	echo "sed -i 's|$fn|/upload/images/$(basename $fn)|g' $file_path" >> /tmp/.dorun.sh
+	echo "sed -i 's|$old_fn|/upload/images/$(basename $fn)|g' $file_path" >> /tmp/.dorun.sh
 	#output_txt=$output_txt'\n<img src="/upload/images/'$(basename $fn)'" />'
 
 done
