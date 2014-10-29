@@ -2,7 +2,7 @@
 layout: post
 title: "gcc 编译出现 internal compiler error: Killed"
 categories: c/c++
-tags: [gcc编译出错, internal compiler error:killed]
+tags: [gcc编译出错]
 date: 2014-10-24 00:22:53
 ---
 
