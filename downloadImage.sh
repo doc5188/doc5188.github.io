@@ -17,7 +17,7 @@ if [ ! -z $url_pre ];then
 		#http://www.grabsun.com
 		#www.grabsun.com
 	echo $url_pre |grep -E "^http://" || url_pre=http://${url_pre}
-	parent_url=`dirname $url_pre`
+	parent_url=`dirname $url_pre`'/'
 	domain_url=`echo $url_pre|awk -F'/' '{print $1"//"$3}'`
 
 fi
@@ -32,13 +32,14 @@ rm /tmp/.dorun.sh
 
 for fn in `grep -oE "<img[^>]*?src=['\"]([^\"]*?)['\"]" $file_path |awk -F"src=" '{print $2}' | sed "s/'//g" | sed 's/"//g'`
 do
+	echo $fn
 	old_fn=$fn
 	echo $fn |grep -E "^http://"
 	ret=$?
 	if [ "$ret" != "0" ];then
 		echo "add url pre"
 		echo $fn | grep -E "^/" && fn=$domain_url$fn
-		echo $fn | grep -E "^/" && fn=$parent_url$fn
+		echo $fn | grep -E "^http://" || fn=$parent_url$fn
 	else
 		echo "$fn"
 	fi
