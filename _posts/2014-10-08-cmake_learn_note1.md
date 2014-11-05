@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "cmake 学习笔记(一)"
-categories: c
-tags: [cmake]
+categories: c/c++
+tags: [cmake,系列教程]
 date: 2014-10-08 17:44:53
 ---
 
