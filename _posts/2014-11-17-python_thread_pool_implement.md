@@ -7,7 +7,7 @@ date: 2014-11-17 12:48:18
 ---
 
 
-{% highlight bash %}
+<pre>
 #coding:utf-8
 
 #Python的线程池实现
@@ -91,4 +91,4 @@ def test():
  print 'end testing'
 if __name__ == '__main__':
  test()
-{% endhighlight %}
+</pre>
