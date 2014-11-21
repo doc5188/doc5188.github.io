@@ -30,7 +30,7 @@ fi
 output_txt=""
 rm /tmp/.dorun.sh
 
-for fn in `grep -oE "<img[^>]*?src=['\"]([^\"]*?)['\"]" $file_path |awk -F"src=" '{print $2}' | sed "s/'//g" | sed 's/"//g'`
+for fn in `grep -oE "<img.*?src=['\"]([^\"]*?)['\"]" $file_path |awk -F"src=" '{print $2}' | sed "s/'//g" | sed 's/"//g'`
 do
 	echo $fn
 	old_fn=$fn
