@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Coreseek"
-categories:技术文章
+categories: 技术文章
 tags: [coreseek]
 date: 2014-11-23 23:28:26
 ---
