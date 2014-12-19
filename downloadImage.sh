@@ -30,7 +30,7 @@ fi
 output_txt=""
 rm /tmp/.dorun.sh
 
-for fn in `grep -oE "<img.*?src=['\"]([^\"]*?)['\"]" $file_path |awk -F"src=" '{print $2}' | sed "s/'//g" | sed 's/"//g'`
+for fn in `grep -oE "<img[^<]*?src=['\"]([^\"]*?)['\"]" $file_path |awk -F"src=" '{print $2}' | sed "s/'//g" | sed 's/"//g'`
 do
 	echo $fn
 	old_fn=$fn
@@ -51,7 +51,7 @@ do
 		wget $fn
 	fi
 	echo "sed -i 's|$old_fn|/upload/images/$(basename $fn)|g' $file_path" >> /tmp/.dorun.sh
-	#output_txt=$output_txt'\n<img src="/upload/images/'$(basename $fn)'" />'
+	output_txt=$output_txt'\n<img src="/upload/images/'$(basename $fn)'" />'
 
 done
 sh /tmp/.dorun.sh
