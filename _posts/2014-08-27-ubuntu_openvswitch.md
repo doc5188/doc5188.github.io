@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "在 Ubuntu 12.04 上安装 Open vSwitch"
-categoires: linux
+categories: linux
 tags: [linux, openvswitch]
 date: 2014-08-27 17:13:23
 ---
