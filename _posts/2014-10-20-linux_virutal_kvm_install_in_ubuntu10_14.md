@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "ubuntu 10.04安装kvm"
-categories: 
-tags: []
+categories: linux
+tags: [kvm, linux, ubuntu]
 date: 2014-10-20 13:13:45
 ---
  
