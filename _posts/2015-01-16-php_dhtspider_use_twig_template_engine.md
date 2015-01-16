@@ -15,7 +15,7 @@ a) 下载Twig.
 
 b) 使用Twig.
 
-{% hightlight bash %}
+{% highlight bash %}
 <?php
 require_once 'Twig-1.16.0/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
@@ -28,4 +28,4 @@ $twig = new Twig_Environment($loader);
 echo $twig->render('index', array('name' => 'Fabien'));
 
 ?>
-{% endhightlight %}
+{% endhighlight %}
