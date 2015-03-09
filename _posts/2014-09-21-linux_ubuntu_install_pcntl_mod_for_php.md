@@ -1,6 +1,6 @@
 ---
 layout: post
-data: 2014-09-21 23:01:38
+date: 2014-09-21 23:01:38
 title: "ubuntu 安装php模块pcntl"
 categories: linux
 tags: [pcntl, php, ubuntu]

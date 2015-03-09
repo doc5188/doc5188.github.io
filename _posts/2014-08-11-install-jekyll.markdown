@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ubuntu 12.04 Use Jekyll"
-data: 2014-04-11 10:59:11
+date: 2014-08-11 10:59:11
 categories: Linux
 ---
 
